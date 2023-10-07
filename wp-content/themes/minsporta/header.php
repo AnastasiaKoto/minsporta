@@ -18,7 +18,7 @@
 		<link rel="profile" href="https://gmpg.org/xfn/11" />
 		<?php wp_head(); ?>
 	</head>
-<!-- qweqwi -->
+
 	<body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
 		<div id="page" class="site">
