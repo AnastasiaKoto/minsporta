@@ -38,7 +38,7 @@
 							</ul>
 						</nav>
 						<div class="header__right flex">
-							<a href="/profil" class="header__profile">
+							<a href="/profil/" class="header__profile">
 								<img src="/wp-content/themes/minsporta/images/lk.svg" alt="">
 							</a>
 							<div class="burger">

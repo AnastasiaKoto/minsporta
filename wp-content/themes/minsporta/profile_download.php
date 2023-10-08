@@ -37,36 +37,38 @@ $parc_guests = get_field('participants_list', 'user_' . $current_user->ID);
 			<div class="guests__list grid">
 				<?php if($vip_guests) { ?>
 				<div class="guests__group">
+					<h3>
+						Гости
+					</h3>
 					<?php foreach($vip_guests as $v_guest) { ?>
 					<div class="guest__row flex">
 						<div class="name">
 							<?php echo $v_guest['txt']; ?>
 						</div>
-						<div class="guests__form">
-							<form action="/wp-admin/admin-ajax.php?action=getPdf" method="POST">
-								<input type="hidden" value="<?php echo $v_guest['txt']; ?>" name="vip_guest">
-								<button type="submit" class="btn-submit__single"></button>
-							</form>
-						</div>
+						<button class="download__single"></button>
 					</div>
 					<?php } ?>
+					<button class="download__all">
+						Скачать все
+					</button>
 				</div>
 				<?php } ?>
 				<?php if($parc_guests) { ?>
 				<div class="guests__group">
-					<?php foreach($vip_guests as $v_guest) { ?>
+					<h3>
+						Участники
+					</h3>
+					<?php foreach($parc_guests as $p_guest) { ?>
 					<div class="guest__row flex">
 						<div class="name">
-							<?php echo $v_guest['txt']; ?>
+							<?php echo $p_guest['txt']; ?>
 						</div>
-						<div class="guests__form">
-							<form action="/wp-admin/admin-ajax.php?action=getPdf" method="POST">
-								<input type="hidden" value="<?php echo $v_guest['txt']; ?>" name="vip_guest">
-								<button type="submit" class="btn-submit__single"></button>
-							</form>
-						</div>
+						<button class="download__single"></button>
 					</div>
 					<?php } ?>
+					<button class="download__all">
+						Скачать все
+					</button>
 				</div>
 				<?php } ?>
 			</div>
