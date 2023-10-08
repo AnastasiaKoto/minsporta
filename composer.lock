@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3512efb389bfca4ccc16d35bea1ac94e",
+    "content-hash": "149bbde0156d381b97d8cd20b4d887b0",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -174,21 +174,21 @@
         },
         {
             "name": "endroid/qrcode",
-            "version": "5.0.2",
+            "version": "4.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endroid/qr-code.git",
-                "reference": "e58d34fa0b86a62696144baba9d80ee98845f957"
+                "reference": "2436c2333a3931c95e2b96eb82f16f53143d6bba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endroid/qr-code/zipball/e58d34fa0b86a62696144baba9d80ee98845f957",
-                "reference": "e58d34fa0b86a62696144baba9d80ee98845f957",
+                "url": "https://api.github.com/repos/endroid/qr-code/zipball/2436c2333a3931c95e2b96eb82f16f53143d6bba",
+                "reference": "2436c2333a3931c95e2b96eb82f16f53143d6bba",
                 "shasum": ""
             },
             "require": {
                 "bacon/bacon-qr-code": "^2.0.5",
-                "php": "^8.1"
+                "php": "^8.0"
             },
             "conflict": {
                 "khanamiryan/qrcode-detector-decoder": "^1.0.6"
@@ -208,7 +208,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.x-dev"
+                    "dev-master": "4.x-dev"
                 }
             },
             "autoload": {
@@ -237,7 +237,7 @@
             ],
             "support": {
                 "issues": "https://github.com/endroid/qr-code/issues",
-                "source": "https://github.com/endroid/qr-code/tree/5.0.2"
+                "source": "https://github.com/endroid/qr-code/tree/4.8.2"
             },
             "funding": [
                 {
@@ -246,7 +246,7 @@
                 }
             ],
             "abandoned": "endroid/qr-code",
-            "time": "2023-10-04T22:55:54+00:00"
+            "time": "2023-03-30T18:46:02+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -467,5 +467,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
