@@ -121,4 +121,28 @@ jQuery(document).ready(function($) {
 			tabContents[buttonIndex].classList.add("active");
 		});
 	}
+
+	var downloadButton = $(".download__pdf");
+	$(downloadButton).on("click", function() {
+		let form = document.createElement('form');
+		form.method = 'POST';
+		form.action = '/wp-admin/admin-ajax.php?action=getPdf'; // URL для генерации и получения PDF документа
+
+		let qr = document.createElement('input');
+		qr.type = 'hidden';
+		qr.name = 'qr';
+		qr.value = $(this).attr("data-qr");
+		form.appendChild(qr);
+
+		let type = document.createElement('input');
+		type.type = 'hidden';
+		type.name = 'type';
+		type.value = $(this).attr("data-type");
+		form.appendChild(type);
+
+		document.body.appendChild(form);
+		form.submit();
+		document.body.removeChild(form);
+	})
+
 })

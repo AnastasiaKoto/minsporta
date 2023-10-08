@@ -1,4 +1,5 @@
 <?php
+use Dompdf\Dompdf;
 $root_path = ABSPATH;
 require_once $root_path . '/vendor/autoload.php';
 const FIELD_PARTICIPANTS = 'field_6505d06d0b877';
@@ -33,8 +34,8 @@ function all_js() {
 	wp_enqueue_script('slick', '/wp-content/themes/minsporta/slick/slick.min.js');
 	wp_enqueue_script('main', '/wp-content/themes/minsporta/js/global.js');
 }
-  add_action('wp_enqueue_scripts', 'all_styles');
-  add_action('wp_enqueue_scripts', 'all_js');
+add_action('wp_enqueue_scripts', 'all_styles');
+add_action('wp_enqueue_scripts', 'all_js');
 
 function wpse_enqueue_page_template_styles() {
     if ( is_page_template( 'gallery.php' ) ) {
@@ -106,4 +107,16 @@ function adaptiveweb_save_profile_form() {
 
   wp_redirect(add_query_arg('updated', 'success', wp_get_referer()));
   exit;
+}
+
+add_action( 'wp_ajax_getPdf', 'getPdf' );
+function getPdf(): void
+{
+    $dompdf = new Dompdf();
+    $html = file_get_contents(__DIR__ . "/qr-template.html");
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream();
+    die();
 }

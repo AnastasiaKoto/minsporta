@@ -1,4 +1,4 @@
-<?  
+<?php
 /* Template Name: Скачать пригласительные
 */
 
@@ -45,12 +45,18 @@ $parc_guests = get_field('participants_list', 'user_' . $current_user->ID);
 						<div class="name">
 							<?php echo $v_guest['txt']; ?>
 						</div>
-						<button class="download__single"></button>
+						<button
+                                class="download__single download__pdf"
+                                data-qr="<?php echo $v_guest['qr']; ?>"
+                                data-type="vip"
+                        ></button>
 					</div>
 					<?php } ?>
-					<button class="download__all">
-						Скачать все
-					</button>
+					<button
+                            class="download__all"
+                            data-type="vip"
+                            data-qr="all"
+                    >Скачать все</button>
 				</div>
 				<?php } ?>
 				<?php if($parc_guests) { ?>
@@ -63,12 +69,18 @@ $parc_guests = get_field('participants_list', 'user_' . $current_user->ID);
 						<div class="name">
 							<?php echo $p_guest['txt']; ?>
 						</div>
-						<button class="download__single"></button>
+						<button
+                                class="download__single download__pdf"
+                                data-qr="<?php echo $p_guest['qr']; ?>"
+                                data-type="parc"
+                        ></button>
 					</div>
 					<?php } ?>
-					<button class="download__all">
-						Скачать все
-					</button>
+					<button
+                            class="download__all download__pdf"
+                            data-qr="all"
+                            data-type="parc"
+                    >Скачать все</button>
 				</div>
 				<?php } ?>
 			</div>
