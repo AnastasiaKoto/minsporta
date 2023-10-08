@@ -45,6 +45,11 @@ function wpse_enqueue_page_template_styles() {
 	if (is_page_template('profile.php') || is_page_template('profile_add.php') || is_page_template('profile_download.php')) {
 		wp_enqueue_style( 'profile_css', '/wp-content/themes/minsporta/css/profile.css' );
     }
+  if (is_page_template('main.php')) {
+    wp_enqueue_style( 'acc_css', '/wp-content/themes/minsporta/css/accordion.min.css' );
+    wp_enqueue_style( 'land_css', '/wp-content/themes/minsporta/css/landing.css' );
+    wp_enqueue_script('acc_js', '/wp-content/themes/minsporta/js/accordion.min.js');
+  }
 }
 add_action( 'wp_enqueue_scripts', 'wpse_enqueue_page_template_styles' );
 

@@ -95,6 +95,27 @@ $posts = get_posts($args);
 				 } ?>
             </div>
         </section>
+        <?php $last_nominants = get_field('last_nomin');
+        if($last_nominants) {
+        ?>
+        <section class="last__nominants" id="last-nomin">
+            <div class="container">
+                <h2 class="section__title">Победители в номинациях прошлых лет</h2>
+                <div class="accordion-container">
+                    <?php foreach($last_nominants as $last) { ?>
+                    <div class="ac">
+                        <h4 class="ac-header">
+                            <button type="button" class="ac-trigger"><?php echo $last['last_title']; ?></button>
+                        </h4>
+                        <div class="ac-panel">
+                            <?php echo $last['last_descr']; ?>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </section>
+        <?php } ?>
 		<?php if(get_field('jury')) { ?>
         <section id="jury" class="jury">
             <div class="container">
@@ -225,3 +246,6 @@ $posts = get_posts($args);
 		<?php } ?>
     </main>
 <?php get_footer(); ?>
+<script>
+    new Accordion('.accordion-container');
+</script>
