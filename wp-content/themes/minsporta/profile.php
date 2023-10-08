@@ -29,7 +29,7 @@ $current_user = wp_get_current_user();
 			<div class="profile__menu flex">
 				<span class="active">Личный кабинет</span>
 				<a href="/profil/dobavit-priglashennyh/">Добавить приглашенных</a>
-				<a href="#">Скачать пригласительные</a>
+				<a href="/profil/skachat-priglasitelnye/">Скачать пригласительные</a>
 				<a href="<?php echo wp_logout_url(home_url()); ?>">Выйти</a>
 			</div>
 			<div class="profile__content">

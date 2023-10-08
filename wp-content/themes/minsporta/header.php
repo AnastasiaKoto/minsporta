@@ -18,7 +18,7 @@
 		<link rel="profile" href="https://gmpg.org/xfn/11" />
 		<?php wp_head(); ?>
 	</head>
-<!-- qweqwi -->
+
 	<body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
 		<div id="page" class="site">
@@ -38,7 +38,7 @@
 							</ul>
 						</nav>
 						<div class="header__right flex">
-							<a href="/profil" class="header__profile">
+							<a href="/profil/" class="header__profile">
 								<img src="/wp-content/themes/minsporta/images/lk.svg" alt="">
 							</a>
 							<div class="burger">

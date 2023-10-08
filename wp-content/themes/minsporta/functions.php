@@ -3,9 +3,6 @@ $root_path = ABSPATH;
 require_once $root_path . '/vendor/autoload.php';
 const FIELD_PARTICIPANTS = 'field_6505d06d0b877';
 const FIELD_VIP = 'field_65040e0130045';
-const FIELD_PARTICIPANTS_QR = 'field_6519531afb48d';
-const FIELD_VIP_QR = 'field_65194c56cfda9';
-
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
@@ -79,39 +76,29 @@ add_action( 'after_setup_theme', 'hide_admin_bar_for_subscriber' );
 //acf в профиле
 add_action( 'admin_post_adaptiveweb_save_profile_form', 'adaptiveweb_save_profile_form' );
 function adaptiveweb_save_profile_form() {
-    if(!isset($_REQUEST['user_id'])) return;
-    $current_user = wp_get_current_user();
+  if(!isset($_REQUEST['user_id'])) return;
+  $current_user = wp_get_current_user();
 
-    if(!empty($_POST['acf'][FIELD_VIP])) {
-        $form_rows_vip = $_POST['acf'][FIELD_VIP];
-        $vip_limit = get_field('vip_limit', 'user_'. $current_user->ID);
-        $qrs = array_map('acfMap', $form_rows_vip);
-        $link_folder = get_stylesheet_directory() . '/images/qr_codes/' . $current_user->user_login . '/' . FIELD_VIP . '/';
-        $all_qrs = scandir($link_folder);
+  if(!empty($_POST['acf'][FIELD_VIP])) {
+    $form_rows_vip = $_POST['acf'][FIELD_VIP];
+    $vip_limit = get_field('vip_limit', 'user_'. $current_user->ID);
 
-        if(count($form_rows_vip) > $vip_limit) {
-            $_POST['acf'][FIELD_VIP] = array_slice($form_rows_vip, 0, $vip_limit);
-        }
-
-        foreach($all_qrs as $qr) {
-            $test = $qr;
-        }
-
-    } elseif(!empty($_POST['acf'][FIELD_PARTICIPANTS])) {
-        $form_rows_participants = $_POST['acf'][FIELD_PARTICIPANTS];
-        $parc_limit = get_field('parc_limit', 'user_'. $current_user->ID);
-
-        if(count($form_rows_participants) > $parc_limit) {
-            $_POST['acf'][FIELD_PARTICIPANTS] = array_slice($form_rows_participants, 0, $parc_limit);
-        }
+    if(count($form_rows_vip) > $vip_limit) {
+      $_POST['acf'][FIELD_VIP] = array_slice($form_rows_vip, 0, $vip_limit);
     }
+  }
 
-    do_action('acf/save_post', $_REQUEST['user_id']);
+  if(!empty($_POST['acf'][FIELD_PARTICIPANTS])) {
+    $form_rows_participants = $_POST['acf'][FIELD_PARTICIPANTS];
+    $parc_limit = get_field('parc_limit', 'user_'. $current_user->ID);
 
-    wp_redirect(add_query_arg('updated', 'success', wp_get_referer()));
-    exit;
-}
+    if(count($form_rows_participants) > $parc_limit) {
+      $_POST['acf'][FIELD_PARTICIPANTS] = array_slice($form_rows_participants, 0, $parc_limit);
+    }
+  }
 
-function acfMap($acf) {
-  return $acf[FIELD_VIP_QR];
+  do_action('acf/save_post', $_REQUEST['user_id']);
+
+  wp_redirect(add_query_arg('updated', 'success', wp_get_referer()));
+  exit;
 }

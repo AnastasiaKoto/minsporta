@@ -377,6 +377,66 @@ a.acf-button.button-primary {
 	font-weight: 600;
 }
 
+.guests__list {
+	padding-top: 40px;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 40px;
+}
+
+.guest__row {
+	justify-content: space-between;
+	align-items: center;
+}
+
+.guest__row:not(:last-of-type) {
+	margin-bottom: 15px;
+}
+
+.guest__row .name {
+	font-size: 18px;
+}
+
+.download__all {
+	background: transparent;
+	display: block;
+	width: 100%;
+	padding: 19px 0;
+	color: #C89E67;
+    line-height: 134%;
+	border: 1px solid #C89E67;
+	transition: all .3s ease;
+	text-transform: uppercase;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 25px;
+}
+
+.download__all:hover {
+	background: #C89E67;
+	color: #000;
+	border: 1px solid #C89E67;
+	transition: all .3s ease;
+}
+
+.download__single {
+	padding: 20px;
+    background-color: transparent;
+    border: 1px solid #C89E67;
+	background-image: url(/wp-content/uploads/2023/10/group-86.svg);
+	background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: center center;
+}
+
+.guests__group h3 {
+	color: #C89E67;
+    margin-bottom: 30px;
+    font-size: 26px;
+    border-bottom: 1px solid #C89E67;
+    padding-bottom: 5px;
+    font-weight: 500;
+}
+
 @media screen and (max-width: 1075px) {
 	
 	.profile__menu {
@@ -403,5 +463,9 @@ a.acf-button.button-primary {
 	.profile__section {
 		padding-top: 60px;
 		padding-bottom: 60px;
+	}
+	
+	.guests__list {
+		grid-template-columns: repeat(1, 1fr);
 	}
 }
