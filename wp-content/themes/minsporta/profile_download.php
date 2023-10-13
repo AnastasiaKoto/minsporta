@@ -53,7 +53,7 @@ $parc_guests = get_field('participants_list', 'user_' . $current_user->ID);
 					</div>
 					<?php } ?>
 					<button
-                            class="download__all"
+                            class="download__all download__pdf"
                             data-type="vip"
                             data-qr="all"
                     >Скачать все</button>

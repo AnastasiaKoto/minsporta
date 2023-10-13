@@ -4,6 +4,7 @@ $root_path = ABSPATH;
 require_once $root_path . '/vendor/autoload.php';
 const FIELD_PARTICIPANTS = 'field_6505d06d0b877';
 const FIELD_VIP = 'field_65040e0130045';
+const QR_DIR = __DIR__ . '/images/qr_codes/admin/';
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
@@ -109,9 +110,45 @@ function getPdf(): void
 {
     $dompdf = new Dompdf();
     $html = file_get_contents(__DIR__ . "/qr-template.html");
+    if (!empty($_POST['qr']) && $_POST['qr'] != 'all') {
+        $img = getImageForDomPdf($_POST['qr'], $_POST['type']);
+        $html = str_replace('<!--QR-->', $img, $html);
+    }
+    if (!empty($_POST['qr']) && $_POST['qr'] == 'all') {
+        $fieldName = match($_POST['type']) {
+            'vip' => 'vip_list',
+            'parc' => 'participants_list',
+            default => ''
+        };
+        $guestList = get_field($fieldName, 'user_'. wp_get_current_user()->ID);
+        $images = '';
+        foreach ($guestList as $guest) {
+            $images .= getImageForDomPdf($guest['qr'], $_POST['type']);
+        }
+        $html = str_replace('<!--QR-->', $images, $html);
+    }
     $dompdf->loadHtml($html);
     $dompdf->setPaper('A4', 'landscape');
     $dompdf->render();
     $dompdf->stream();
     die();
+}
+
+function getImageForDomPdf(string $qrFileName, string $guestType): string
+{
+    $guestType = match ($guestType) {
+        'vip' => FIELD_VIP . '/',
+        'parc' => FIELD_PARTICIPANTS . '/',
+        default => ''
+    };
+    $path = QR_DIR . $guestType . $qrFileName;
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    if (!$data) {
+
+        return "<p style=\"color: red\">qr $guestType$qrFileName not found</p>";
+    }
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+    return '<img src="' . $base64 . '" alt="QR" class="qr_image">';
 }
